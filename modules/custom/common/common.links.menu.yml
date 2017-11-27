@@ -1,0 +1,13 @@
+#d8_examples2.admin:
+#  title: 'Common'
+#  description: 'example of admin settings page link'
+#  parent: system.admin_config_development
+#  route_name: common.common
+#  weight: 100
+#
+#
+#d8_examples.form:
+#  title: 'Common settings'
+#  description: 'Configure settings for the common module.'
+#  route_name: common.form
+#  parent: 'system.admin_config_development'

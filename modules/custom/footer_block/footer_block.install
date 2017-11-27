@@ -1,0 +1,63 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+use Drupal\user\RoleInterface;
+use Drupal\block\Entity\Block;
+use Drupal\block_content\Entity\BlockContent;
+
+/**
+ * Implements hook_install().
+ */
+function footer_block_install() {
+  $block_content = BlockContent::create([
+    'type' => 'basic',
+    'info' => 'Demo Block',
+  ]);
+  $block_content->set('body', 'This is demo block for drupal 8');
+  $block_content->save();
+
+  $block = Block::create([
+    'id' => 'default_demo_block',
+    'plugin' => 'block_content:' . $block_content->uuid(),
+    'region' => 'content',
+    'provider' => 'block_content',
+    'weight' => -100,
+    'theme' => \Drupal::config('system.theme')->get('default'),
+//    'visibility' => array('request_path' => array('id' => 'request_path' , 'pages' => '/demopage')),
+    'settings' => [
+      'label' => 'Demo Block',
+      'label_display' => 'visible',
+    ],
+  ]);
+  $block->save();
+}
+
+function footer_block_schema() {
+  $schema['footer_data'] = array(
+    'fields' => array(
+      'id'=>array(
+        'type'=>'serial',
+        'not null' => TRUE,
+      ),
+      'footer_description'=>array(
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+        'description' => '',
+      ),
+      'footer_copywrite'=>array(
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+        'description' => '',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}

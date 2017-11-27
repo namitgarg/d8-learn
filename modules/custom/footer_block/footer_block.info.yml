@@ -1,0 +1,6 @@
+name: Pacira Footer
+description: Pacira Footer block
+core: 8.x
+type: module
+package: Custom
+

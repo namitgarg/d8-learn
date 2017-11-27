@@ -1,0 +1,24 @@
+<?php
+
+function custom_banners_page_attachments(array &$page) {
+  $page['#attached']['library'][] = 'custom_banners/custom-banners-lib';
+  $current_path = \Drupal::service('path.current')->getPath();
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    if (isset($node) && ($node->getType() == 'page') || ($node->getType() == 'webform')) {
+      if (isset($node->get('field_banner_image')->entity->uri->value)) {
+        $desktop_image = file_create_url($node->get('field_banner_image')->entity->uri->value);
+        $page['#attached']['drupalSettings']['custom_banners']['desktopPath'] = $desktop_image;
+      }
+      if (isset($node->get('field_banner_mobile')->entity->uri->value)) {
+        $mobile_image = file_create_url($node->get('field_banner_mobile')->entity->uri->value);
+        $page['#attached']['drupalSettings']['custom_banners']['mobilePath'] = $mobile_image;
+      }
+      if (isset($node->get('field_banner_ipad')->entity->uri->value)) {
+        $ipad_image = file_create_url($node->get('field_banner_ipad')->entity->uri->value);
+        $page['#attached']['drupalSettings']['custom_banners']['ipadPath'] = $ipad_image;
+      }
+    }
+  }
+}

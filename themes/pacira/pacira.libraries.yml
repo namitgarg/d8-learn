@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      
+fonts:
+  css:
+    theme:
+      '//fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800': { type: external }
+      '//fonts.googleapis.com/css?family=PT+Serif:400,400i': { type: external }

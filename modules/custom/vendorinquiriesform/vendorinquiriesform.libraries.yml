@@ -1,0 +1,6 @@
+vendor-lib:
+  version: 1.x
+  js:
+    js/vendorinquiriesform.js: {}
+  dependencies:
+    - core/jquery

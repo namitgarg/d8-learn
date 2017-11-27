@@ -1,0 +1,6 @@
+partner-lib:
+  version: 1.x
+  js:
+    js/partnershipform.js: {}
+  dependencies:
+    - core/jquery

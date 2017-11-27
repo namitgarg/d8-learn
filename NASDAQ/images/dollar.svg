@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/Chairperson Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ForNasdaq" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nasdaq_UI_Elements" transform="translate(-646.000000, -1342.000000)">
+            <g id="Contents" transform="translate(0.000000, 535.000000)">
+                <g id="Icons" transform="translate(130.000000, 742.000000)">
+                    <g id="Icon/Financial" transform="translate(516.000000, 65.000000)">
+                        <circle id="Oval-4" fill="#417505" fill-rule="evenodd" cx="12.5" cy="12.5" r="12.5"></circle>
+                        <text id="$" font-family=".AppleSystemUIFont" font-size="16" font-weight="normal" fill="#FFFFFF">
+                            <tspan x="7.34326172" y="18">$</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

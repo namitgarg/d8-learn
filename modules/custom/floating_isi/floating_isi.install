@@ -1,0 +1,10 @@
+<?php
+use Drupal\system\Entity\Menu;
+use Drupal\block\Entity\Block;
+
+function floating_isi_install_tasks() {
+ $block = Block::load('floatingisi');
+ print_r($block);
+$block->setRegion('content');
+$block->save();
+}

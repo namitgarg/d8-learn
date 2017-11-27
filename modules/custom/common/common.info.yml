@@ -1,0 +1,6 @@
+name: Common
+description: Common functionality module for Pacira
+core: 8.x
+type: module
+package: Custom
+

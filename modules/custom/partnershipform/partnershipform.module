@@ -1,0 +1,38 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ChangedCommand;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+/*
+ * Form alter for partnership wenform
+ */
+function partnershipform_form_webform_submission_partnership_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//  $form['elements']['country']['#options']=array('us'=>'USA','ind' => 'INDIA');
+  $form['#attached']['library'][] = 'partnershipform/partner-lib';
+  
+  
+//   kint($form['elements']['country']);
+//  $form['elements']['country']['#ajax']=array(
+//        // Could also use [get_class($this), 'updateColor'].
+//        'callback' => 'partnershipform_updateColor',
+//        'wrapper' => 'color-wrapper',
+//      );
+//  $stateoptions = $form_state->getValue('country');
+//  if($stateoptions) {
+//    $form['elements']['state']['#options']=array('us'=>'USA','ind' => 'INDIA');
+//  }
+   
+}
+
+/**
+   * Ajax callback for the color dropdown.
+   */
+//  function partnershipform_updateColor(array $form, FormStateInterface $form_state) {
+//$term_name = 'random value';
+//  $response = new AjaxResponse();
+//  $response->addCommand(new HtmlCommand('#edit-state-select', $term_name));
+//print("eeeee");
+//  return $response;
+//  }

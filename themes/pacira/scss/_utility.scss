@@ -1,0 +1,378 @@
+body{
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    &.cboxOpen{
+        overflow: hidden;
+    }
+}
+
+.button{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 100px;
+    border: 0px none;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    width: 380px;
+    padding: 14px 10px;
+    margin-bottom: 15px;
+    &.buttonPurple{
+        background-color: #6e318d;
+        color: #fff;
+        &:active:hover, &:active:focus{
+            background-color: #6e318d;
+            color: #fff;
+        }
+    }
+    &.buttonWhite{
+        background-image: linear-gradient(277deg, rgba(255, 255, 255, 0.8), #ffffff);
+        color: #520A76
+    }
+    &.small{
+        max-width: 240px;
+        padding: 8px;
+        font-size: 14px;
+    }
+    &:focus, &:active, &:hover{
+        outline: none;
+        text-decoration: none
+    }
+}
+
+p,label{
+    display: block;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.62;
+}
+label{
+    font-weight: 700
+}
+h1{
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 0.95;
+    color: #333333;
+}
+h2{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.19;
+    color: #333333;
+}
+h3{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.19;
+    color: #333333;
+    margin: 0
+}
+h4{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.62;
+    color: #333333;
+}
+i.ptSerif{
+    font-family: 'PT Serif', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.3;
+    color: #424853;
+}
+small{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.86;
+    color: #5a626f;
+}
+.purpleText{
+    font-weight: 700;
+    color: #6e318d
+}
+.flexWrapper{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+}
+a{
+    &:hover,&:focus,&:active,&:visited{
+        text-decoration: none;
+        outline: none
+    }
+}
+
+.noWrap{
+    white-space: nowrap;
+}
+
+
+// About Us Pop-up
+#cboxClose{
+    background: url(../images/close.svg) no-repeat;
+    height: 50px;
+    width: 50px;
+    bottom: 97%;
+    right: -25px;
+    background-size: 50px;
+    &:hover{
+        background-position: 0
+    }
+    &:focus{
+        outline: none
+    }
+}
+#cboxOverlay{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    opacity: 1 !important;
+    background-color: transparent;
+}
+#colorbox{
+    overflow: visible !important;
+    width: 1180px !important;
+    height: 610px !important;
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    #cboxMiddleLeft, #cboxTopLeft, #cboxTopCenter, #cboxTopRight{
+        display: none;
+        height: 0 !important
+    }
+    #cboxWrapper{
+        overflow: visible !important;
+        width: 100% !important;
+        height: 100%  !important;
+        border-radius: 0;
+        #cboxContent{
+            overflow: visible !important;
+            padding: 45px 55px;
+            width: 100% !important;
+            height: 100% !important;
+            box-sizing: border-box;
+            #cboxLoadedContent{
+                width: 100% !important;
+                height: 100% !important;
+                margin-bottom: 0;
+                img{
+                    vertical-align: top;
+                    display: inline-block;
+                    margin-right: 45px;
+                    width: 270px
+                }
+                .popText{
+                    display: inline-block;
+                    width: 70%;
+                    overflow-y: auto;
+                    max-height: 515px;
+                    padding-right: 40px;
+                    h3{
+                        margin: 0 0 10px; 
+                        font-size: 36px;
+                        font-weight: 700;
+                        line-height: 0.67;
+                        color: #424853;
+                    }
+                    h4{
+                        font-size: 20px;
+                        font-weight: bold;
+                        line-height: 1.2;
+                        color: #5a626f;
+                    }
+                    p{
+                        font-size: 20px;
+                        line-height: 1.62;
+                        color: #5a626f;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer{
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.38;
+    background-color: #5a626f;
+    padding: 64px 0px 0px;
+    margin: 0;
+    border: 0;
+    ul{
+        padding: 0;
+        list-style: none;
+        li{
+            display: inline-block;
+            line-height: 13px;
+            padding: 0 5px;
+            border-right: 1px solid #fff;
+            a{
+                color: #fff;
+                font-weight: 700
+            }
+            &:last-child{
+                border-right: 0
+            }
+        }
+    }
+    p{
+        color: #fff;
+        font-size: 13px;
+        line-height: 1.38;
+        margin: 20px 0 40px
+    }
+    .copyRight{
+        background-color: #424853;
+        padding: 25px
+    }
+}
+
+
+//Responsive CSS
+@media only screen and (max-width: 1199px){
+    .button{
+        font-size: 14px;
+        padding: 8px 10px
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px){
+    #colorbox{
+        max-width: 980px !important;
+        #cboxWrapper{
+            #cboxContent{
+                #cboxLoadedContent{
+                    img{
+                        margin-right: 25px;
+                    }
+                    .popText{
+                        width: 65%
+                    }
+                }
+            }
+        }   
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px){
+    h3{
+        font-size: 24px;
+        line-height: 1.17;
+    }
+    #cboxClose{
+        height: 39px;
+        width: 39px;
+        background-size: 39px;
+        right: -17px
+    }
+    #colorbox{
+        max-width: 636px !important;
+        max-height: 460px !important;
+        #cboxWrapper{
+            #cboxContent{
+                padding: 45px 35px;
+                #cboxLoadedContent{
+                    img{
+                        max-width: 186px;
+                        margin-right: 15px
+                    }
+                    .popText{
+                        width: 63%;
+                        max-height: 365px;
+                        h3{
+                            font-size: 24px;
+                            line-height: 1.0;
+                        }
+                        h4{
+                            font-size: 16px;
+                            line-height: 1.5;
+                        }
+                        p{
+                            font-size: 15px;
+                            line-height: 1.33;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    .footer{
+        padding: 50px 0 0
+    }
+}
+
+@media only screen and (max-width: 767px){
+    h3{
+        font-size: 20px;
+        line-height: 1.2;
+    }
+    .footer{
+        font-size: 10px;
+        line-height: 1.6;
+        padding: 40px 0px 0px;
+        .copyRight{
+            padding: 11px 20px
+        }
+        p{
+            font-size: 10px
+        }
+    }
+    #cboxClose{
+        right: 0px;
+        bottom: 96%;
+        background-size: 39px;
+        height: 39px;
+        width: 39px
+    }
+    #colorbox{
+        max-width: 308px !important;
+        max-height: 480px !important;
+        #cboxWrapper{
+            #cboxContent{
+                padding: 10px 10px 10px 20px;
+                #cboxLoadedContent{
+                        max-height: 480px;
+                    img{
+                        max-width: 180px;
+                        margin-right: 0px;
+                        display: block;
+                        margin: 0 auto;
+                        margin-bottom: 20px;
+                    }
+                    .popText{
+                        width: 100%;
+                        overflow: unset;
+                        padding-right: 20px;
+                        h3{
+                            font-size: 20px;
+                            line-height: 1.2;
+                            margin: 0 0
+                        }
+                        h4{
+                            margin: 0 0 10px;
+                            font-size: 12px;
+                            line-height: 2;
+                        }
+                        p{
+                            font-size: 14px;
+                            line-height: 1.43;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+}
+
+
+
+
+
+

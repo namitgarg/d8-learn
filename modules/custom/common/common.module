@@ -1,0 +1,62 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+function common_theme(array $existing, $type, $theme, $path) {
+  return array(
+    'common_template' => array(
+      'template' => 'common',
+      'variables' => array(
+        'variable1' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Template preprocess function
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - source_text
+ */
+function template_preprocess_common(&$variables) {
+
+}
+
+/*
+ * Add JS for View blocks.
+ */
+function common_views_pre_render($view) {
+  if ($view->storage->id() == 'leadership' && $view->current_display == 'block_1') {
+    $view->element['#attached']['library'][] = 'common/leadership_lib';
+  }
+  if ($view->storage->id() == 'board_of_directors' && $view->current_display == 'block_1') {
+    $view->element['#attached']['library'][] = 'common/bod_lib';
+  }
+  if ($view->storage->id() == 'career_page_reviews' && $view->current_display == 'block_1') {
+//    $result = $view->result;
+//    foreach ($result as $i => $row) {
+//      $view->result[$i]->_entity->set('field_name','test');
+//      $view->result[$i]->field_name[0]['rendered']['#markup'] = "The new text";
+//
+//    }
+// 
+//    $view->field['nothing']->options['alter']['text'] = 'My custom tesxt';
+
+  }
+  
+}
+
+/*
+ * Add Js for Main menu on every page
+ */
+function common_page_attachments(array &$page) {
+  $page['#attached']['library'][] = 'common/main-menu';
+}

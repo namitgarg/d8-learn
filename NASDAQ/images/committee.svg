@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="19px" viewBox="0 0 29 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>committee</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 20 29 20 29 0 0 0"></polygon>
+    </defs>
+    <g id="ForNasdaq" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nasdaq_UI_Elements" transform="translate(-838.000000, -1344.000000)">
+            <g id="Contents" transform="translate(0.000000, 535.000000)">
+                <g id="Icons" transform="translate(130.000000, 742.000000)">
+                    <g id="committee" transform="translate(708.000000, 67.000000)">
+                        <path d="M7.1890704,12 L8.96770478,13.5261138 L10.786955,12 L11.4903984,12 C11.6644259,12 11.8347867,12.0460488 11.9811729,12.1324228 L13.779269,13.1923252 C14.1425549,13.4066992 14.402609,13.7420488 14.5047127,14.1286504 L15,16 L3,16 L3.49726172,14.1205854 C3.59851921,13.7389268 3.8534963,13.4066992 4.21029498,13.192065 L5.96636503,12.1363252 C6.11416148,12.0476098 6.28734281,12 6.46419086,12 L7.1890704,12 Z" id="Fill-1" fill="#5A626F"></path>
+                        <path d="M12,6.75563717 C12,8.96485409 10.6567373,11 9,11 C7.34326268,11 6,8.96485409 6,6.75563717 C6,4.54673617 7.34326268,3 9,3 C10.6567373,3 12,4.54673617 12,6.75563717" id="Fill-3" fill="#5A626F"></path>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-6"></g>
+                        <path d="M0.852941176,18.1363636 L28.1470588,18.1363636 L28.1470588,0.863636364 L0.852941176,0.863636364 L0.852941176,18.1363636 Z M0,19 L29,19 L29,0 L0,0 L0,19 Z" id="Fill-5" fill="#5A626F" mask="url(#mask-2)"></path>
+                        <polygon id="Fill-7" fill="#5A626F" mask="url(#mask-2)" points="16 5 26 5 26 3 16 3"></polygon>
+                        <polygon id="Fill-8" fill="#5A626F" mask="url(#mask-2)" points="16 13 26 13 26 11 16 11"></polygon>
+                        <polygon id="Fill-9" fill="#5A626F" mask="url(#mask-2)" points="16 10 26 10 26 8 16 8"></polygon>
+                        <polygon id="Fill-10" fill="#5A626F" mask="url(#mask-2)" points="16 16 26 16 26 14 16 14"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="ForNasdaq" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nasdaq_UI_Elements" transform="translate(-230.000000, -1396.000000)" fill-rule="nonzero" fill="#9B9B9B">
+            <g id="Contents" transform="translate(0.000000, 535.000000)">
+                <g id="Icons" transform="translate(130.000000, 742.000000)">
+                    <g id="Refresh" transform="translate(100.000000, 119.000000)">
+                        <g id="Layer_1">
+                            <path d="M12.5,21.875 C7.34396307,21.875 3.125,17.6558949 3.125,12.5 C3.125,7.34367898 7.34396307,3.125 12.5,3.125 C15.078125,3.125 17.421804,4.21875 19.0629261,5.93757102 L14.0625,10.9375 L25,10.9375 L25,0 L21.328267,3.67201705 C19.0629261,1.40610795 15.9379261,0 12.5,0 C5.62521307,0 0,5.62521307 0,12.5 C0,19.3747869 5.54644886,25 12.5,25 C18.2560369,25 23.0317472,21.1552557 24.531321,15.9090909 L21.225142,15.9090909 C19.893821,19.4290483 16.4568182,21.875 12.5,21.875 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

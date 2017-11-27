@@ -1,0 +1,39 @@
+common_lib:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/common.js: {}
+  css:
+    theme:
+      css/common.css: {}
+
+leadership_lib:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/leadership.js: {}
+
+bod_lib:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/bod.js: {}
+         
+main-menu:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/menu.js: {}
+career-review:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/career-review.js: {}
+    
+    
+   

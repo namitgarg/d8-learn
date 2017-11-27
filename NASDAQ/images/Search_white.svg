@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="21px" viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Search</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="16.1819805 0 16.1819805 23.6505869 3.95229866e-16 23.6505869 0 0"></polygon>
+    </defs>
+    <g id="ForNasdaq" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nasdaq_UI_Elements" transform="translate(-1110.000000, -1557.000000)">
+            <g id="Contents" transform="translate(0.000000, 535.000000)">
+                <g id="Icons" transform="translate(130.000000, 742.000000)">
+                    <g id="Search_Section" transform="translate(0.000000, 251.000000)">
+                        <g id="Search_button" transform="translate(900.000000, 22.000000)">
+                            <g id="Search" transform="translate(91.495689, 18.495689) rotate(-45.000000) translate(-91.495689, -18.495689) translate(82.995689, 6.495689)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Clip-2"></g>
+                                <path d="M8.09099026,14.0157133 C4.91340209,14.0157133 2.32825877,11.4003511 2.32825877,8.18561862 C2.32825877,4.97088617 4.91340209,2.35547485 8.09099026,2.35547485 C11.2685784,2.35547485 13.8537217,4.97088617 13.8537217,8.18561862 C13.8537217,11.4003511 11.2685784,14.0157133 8.09099026,14.0157133 M16.1819805,8.18561862 C16.1819805,3.67203808 12.5523706,0 8.09099026,0 C3.62960991,0 0,3.67203808 0,8.18561862 C0,12.255781 2.95174707,15.6411873 6.80322063,16.2670565 L6.80322063,22.347764 C6.80322063,23.064319 7.38271454,23.6505869 8.09099026,23.6505869 C8.79926598,23.6505869 9.37875988,23.064319 9.37875988,22.347764 L9.37875988,16.2670565 C13.2302334,15.6411873 16.1819805,12.255781 16.1819805,8.18561862" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

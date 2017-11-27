@@ -1,0 +1,7 @@
+footer_block.footer_block:
+    path: '/footer_block'
+    defaults:
+        _controller: '\Drupal\footer_block\Controller\footerBlockContent'
+        _title: 'Footer Block'
+    requirements: 
+        _permission: 'access content'

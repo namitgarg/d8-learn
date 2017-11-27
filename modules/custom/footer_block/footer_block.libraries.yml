@@ -1,0 +1,9 @@
+footer_block_lib:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/footer_block.js: {}
+  css:
+    theme:
+      css/footer_block.css: {}

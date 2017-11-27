@@ -1,0 +1,6 @@
+floating-isi-lib:
+  version: 1.x
+  js:
+    js/floating_isi.js: {}
+  dependencies:
+    - core/jquery

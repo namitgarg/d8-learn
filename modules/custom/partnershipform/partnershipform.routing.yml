@@ -1,0 +1,9 @@
+partnershipform.content:
+  path: '/partnership-check-mail'
+  defaults:
+    _controller: '\Drupal\partnershipform\Controller\partnershipformController::emailCheck'
+    _title: 'mail check'
+  requirements:
+    _permission: 'access content'
+  options:
+    _admin_route: TRUE  

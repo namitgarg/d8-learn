@@ -1,0 +1,6 @@
+custom-banners-lib:
+  version: 1.x
+  js:
+    js/custom_banners.js: {}
+  dependencies:
+    - core/jquery

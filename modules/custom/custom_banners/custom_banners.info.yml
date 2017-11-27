@@ -1,0 +1,5 @@
+name: Custom Banners
+description: Creates Custom Banners
+package: Custom
+type: module
+core: 8.x
