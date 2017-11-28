@@ -36,3 +36,20 @@ function partnershipform_form_webform_submission_partnership_form_alter(&$form, 
 //print("eeeee");
 //  return $response;
 //  }
+
+
+/*
+ * Hook_thme for blank page
+ */
+
+Function partnershipform_theme($existing, $type, $theme, $path){
+  return array(
+    'videoPage' => array(
+      'variables' => array(
+        'list' => array(),
+      ),
+      'template' => 'videoPage',
+      'path' => drupal_get_path('module', 'partnershipform').'/templates',
+    ),
+  );
+}

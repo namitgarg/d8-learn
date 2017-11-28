@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+namespace Drupal\common;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 function common_theme(array $existing, $type, $theme, $path) {
@@ -59,4 +59,25 @@ function common_views_pre_render($view) {
  */
 function common_page_attachments(array &$page) {
   $page['#attached']['library'][] = 'common/main-menu';
+}
+
+
+
+//function common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//  print_r($form_id);
+//}
+
+function common_form_webform_submission_partnership_node_47_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  print_r($form_id);
+  $form['elements']['email_address']['#ajax'] = array(
+        'callback' => 'commonEmailValidation',
+        'effect' => 'none',
+        'event' => 'change',
+        'method' => 'replace',
+        'progress' => array(
+//          'type' => 'throbber',
+          'message' => NULL,
+        ),
+      );
+  kint($form['elements']['email_address']);
 }

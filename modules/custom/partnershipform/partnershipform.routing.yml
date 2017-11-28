@@ -6,4 +6,12 @@ partnershipform.content:
   requirements:
     _permission: 'access content'
   options:
-    _admin_route: TRUE  
+    _admin_route: TRUE
+    
+-partnershipform.partner:
+  path: '/partner'
+  defaults:
+    _form:  '\Drupal\partnershipform\Form\PartnershipForm'
+    _title: 'Partnership Form'
+  requirements:
+    _permission: 'access content'    

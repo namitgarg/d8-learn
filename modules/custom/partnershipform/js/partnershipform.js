@@ -4,13 +4,46 @@
  */
 
 (function ($) {
+  Drupal.behaviors.myBehavior = {
+  attach: function (context, settings) {
+    $('button').toggleClass('test');
+  }
+};
+   $(document).ajaxComplete(function() {
+     
+     
+     // Email ajax validation
+  if($('#user-email-result label.error').length > 0)
+  {
+   $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
+  }
+  else{
+      $('#partnershipform-simple #edit-submit').removeAttr('disabled');
+  }
+  
+  $('#edit-aoi').on('keyup',function(){
+     $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
+  });
+ 
+  });
   $(document).ready(function () {
    // window.setInterval(recaptchaCheck, 500);
-    $('#edit-country').select2({
-      minimumResultsForSearch: Infinity,
-      placeholder: 'Select an option',
-      dropdownParent: $('.form-item-country'),
-    });
+//    $('#edit-country').select2({
+//      minimumResultsForSearch: Infinity,
+//      placeholder: 'Select an option',
+//      dropdownParent: $('.form-item-country'),
+//    });
+    'use strict';
+    $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
+$('#partnershipform-simple #edit-submit').on('click',function(e) {
+
+
+});
+  // From: http://stackoverflow.com/questions/17962130/restrict-user-to-refresh-and-back-forward-in-any-browser
+  history.pushState({page: 1}, 'Title 1', '#no-back');
+  window.onhashchange = function (event) {
+    window.location.hash = 'no-back';
+  };
   });
 
   // calls all requried validaion

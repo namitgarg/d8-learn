@@ -19,10 +19,29 @@ use \Drupal\node\Entity\Node;
 use Drupal\Core\Form;
 //use Drupal\block\Entity\Block;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Symfony\Component\HttpFoundation\Response;
 class partnershipformController extends ControllerBase {
 
   public function emailCheck() {
+
+/*
+ * Blank Page
+ */
+//    $build = array(
+//    'page' => array(
+//      '#theme' => 'videoPage',
+//    ),
+//  );
+//  $html = \Drupal::service('renderer')->renderRoot($build);
+//  $response = new Response();
+//  $response->setContent($html);
+//  return $response;
+  
+  
+  /// blank page code ends
+    
+    
+    // Db connection started
     $connection = \Drupal::database();
     // db_select dynamic queries
     $query = $connection->select('node', 'n');
@@ -34,23 +53,22 @@ class partnershipformController extends ControllerBase {
     }
 
 // Static queries using connect 
-    $email='nam@gmail.com';
-    $options=array('email'=>'same');
+    $email = 'nam@gmail.com';
+    $options = array('email' => 'same');
     $query2 = $connection->query("SELECT value FROM {webform_submission_data} WHERE webform_id='partnership' and name ='email_address' and value = :value ", [
       ':value' => $_POST['email'],
     ]);
     $result2 = $query2->fetchAll();
-    if(!$result2){
-      $options['email']='unique';
+    if (!$result2) {
+      $options['email'] = 'unique';
     }
     else {
-      $options['email']='same';
+      $options['email'] = 'same';
     }
     return new JsonResponse($options);
-    
+
 
 //    print_r($result2);
-
 // static queries
     $query3 = db_query("SELECT nid FROM node");
     $records3 = $query3->fetchAll();

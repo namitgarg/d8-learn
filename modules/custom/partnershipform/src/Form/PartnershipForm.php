@@ -28,22 +28,22 @@ class PartnershipForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-//    $form['aoi'] = array(
-//      '#type' => 'textfield',
-//      '#title' => t("Area of Partnering Interest"),
-//      '#prefix' => '<div id="user-email-result">',
-//      '#suffix' => '</div>',
-//      '#ajax' => array(
-//        'callback' => 'Drupal\partnershipform\Form\PartnershipForm::checkUserEmailValidation',
-//        'effect' => 'none',
-//        'event' => 'change',
-//        'method' => 'replace',
-//        'progress' => array(
-////          'type' => 'throbber',
-//          'message' => NULL,
-//        ),
-//      ),
-//    );
+    $form['aoi'] = array(
+      '#type' => 'textfield',
+      '#title' => t("Area of Partnering Interest"),
+      '#field_prefix' => '<div id="user-email-result"></div>',
+      //'#suffix' => '</div>',
+      '#ajax' => array(
+        'callback' => 'Drupal\partnershipform\Form\PartnershipForm::checkUserEmailValidation',
+        'effect' => 'none',
+        'event' => 'change',
+        'method' => 'replace',
+        'progress' => array(
+//          'type' => 'throbber',
+          'message' => NULL,
+        ),
+      ),
+    );
     $form['first_name'] = array(
       '#type' => 'textfield',
       '#title' => t("First Name"),
@@ -57,7 +57,12 @@ class PartnershipForm extends FormBase {
     $form['send'] = array(
       '#type' => 'button',
       '#value' => 'Send',
-//      '#ajax' => array(
+
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t("Sends"),
+//            '#ajax' => array(
 //        'callback' => 'Drupal\partnershipform\Form\PartnershipForm::checkFormValidation',
 //        'event' => 'click',
 //        'progress' => array(
@@ -65,10 +70,6 @@ class PartnershipForm extends FormBase {
 //          'message' => NULL,
 //        ),
 //      ),
-    );
-    $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => t("Sends"),
     );
     $form['#attributes']['novalidate'] = 'novalidate';
    // $form['#attached']['library'][] = 'common/select2';
@@ -99,43 +100,30 @@ class PartnershipForm extends FormBase {
 
   public function checkUserEmailValidation(array $form, FormStateInterface $form_state) {
     $ajax_response = new AjaxResponse();
-    if ($form_state->getValue('aoi')=='abcd') {
-      $text = 'User or Email does not exists';
-      $form['aoi']['#prefix'] = '<div id="user-email-error">correct';
-      $ajax_response->addCommand(new HtmlCommand('#user-email-result', $form['aoi']));
-      return $ajax_response;
-    }
-         else if ($form_state->getValue('aoi')=='bcd') {
-      $text = 'User or Email does not exists';
-      $form['aoi']['#prefix'] = '<div id="user-email-error">BCD';
-      $ajax_response->addCommand(new HtmlCommand('#user-email-result', $form['aoi']));
+    $connection = \Drupal::database();
+     $email=$form_state->getValue('aoi');
+    $query2 = $connection->query("SELECT value FROM {webform_submission_data} WHERE webform_id='partnership' and name ='email_address' and value = :value ", [
+      ':value' => $email,
+    ]);    
+    $result2 = $query2->fetchAll();
+    if(!$result2){
+        $ajax_response->addCommand(new HtmlCommand('#user-email-result',''));
       return $ajax_response;
     }
     else {
-      $ajax_response->addCommand(new HtmlCommand('#user-email-result', $form['aoi']));
+      $options['email']='same';
+      $ajax_response->addCommand(new HtmlCommand('#user-email-result','<label class="error">namit</label>'));
       return $ajax_response;
-      
     }
 
   }
 
   public function checkFormValidation(array $form, FormStateInterface $form_state) {
-    $ajax_response = new AjaxResponse();
-//    print("submit validation");
-    $form_state->setRebuild(TRUE);
-//    print_r($form_state); 
-    
-    if ($form_state->getValue('aoi') == '') {
-       $form['aoi']['#prefix']='<div id="user-email-error">Aoi should not be blank.'  ;
-       $ajax_response->addCommand(new HtmlCommand('#user-email-result', $form['aoi']));
-       return $ajax_response;
-    }
-    else {
-
-      $form['aoi']['#prefix']= '<div id="user-email-error" class="error">namit</div>';
-      $ajax_response->addCommand(new HtmlCommand('#user-email-result', $form['aoi']));
-      return $ajax_response;
-    }
+$ajax_response = new AjaxResponse();
+$ajax_response->addCommand(new HtmlCommand('#user-email-result','<label class="error">namit</label>'));
+return $ajax_response;
+   // print_r($form_state); 
+   
 //    submitForm($form,$form_state);
   }
 /*
