@@ -9,14 +9,17 @@ function custom_banners_page_attachments(array &$page) {
     if (isset($node) && ($node->getType() == 'page') || ($node->getType() == 'webform')) {
       if (isset($node->get('field_banner_image')->entity->uri->value)) {
         $desktop_image = file_create_url($node->get('field_banner_image')->entity->uri->value);
+        $desktop_image =file_url_transform_relative($desktop_image);
         $page['#attached']['drupalSettings']['custom_banners']['desktopPath'] = $desktop_image;
       }
       if (isset($node->get('field_banner_mobile')->entity->uri->value)) {
         $mobile_image = file_create_url($node->get('field_banner_mobile')->entity->uri->value);
+        $mobile_image =file_url_transform_relative($mobile_image);
         $page['#attached']['drupalSettings']['custom_banners']['mobilePath'] = $mobile_image;
       }
       if (isset($node->get('field_banner_ipad')->entity->uri->value)) {
         $ipad_image = file_create_url($node->get('field_banner_ipad')->entity->uri->value);
+        $ipad_image =file_url_transform_relative($ipad_image);
         $page['#attached']['drupalSettings']['custom_banners']['ipadPath'] = $ipad_image;
       }
     }

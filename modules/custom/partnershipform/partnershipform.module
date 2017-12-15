@@ -1,55 +1,135 @@
 <?php
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ChangedCommand;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\InvokeCommand;
+
 /*
  * Form alter for partnership wenform
  */
-function partnershipform_form_webform_submission_partnership_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+function partnershipform_form_webform_submission_vendor_form_node_48_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 //  $form['elements']['country']['#options']=array('us'=>'USA','ind' => 'INDIA');
+//  $form['elements']['state']['#options'] = array('us' => 'USA', 'ind' => 'INDIA');
+//  $form['elements']['email_address']['#field_prefix']='<div><label id ="email-address-check"></label></div>';
+  
   $form['#attached']['library'][] = 'partnershipform/partner-lib';
+
+  $form['elements']['email_address']['#prefix'] = '<div id ="email-address-check">';
+  $form['elements']['email_address']['#suffix'] = '</div>';
+  $form['elements']['email_address']['#ajax'] = array(
+    // Could also use [get_class($this), 'updateColor'].
+    'callback' => 'partnershipformcheckEmail',
+    'wrapper' => 'email-address-check',
+    'event' => 'change',
+  );
   
+  // country drop down
+  $form['elements']['country']['#ajax'] = array(
+    // Could also use [get_class($this), 'updateColor'].
+    'callback' => 'partnershipformStateChange',
+    'wrapper' => 'state-change',
+    'event' => 'change',
+  );
   
-//   kint($form['elements']['country']);
-//  $form['elements']['country']['#ajax']=array(
-//        // Could also use [get_class($this), 'updateColor'].
-//        'callback' => 'partnershipform_updateColor',
-//        'wrapper' => 'color-wrapper',
-//      );
-//  $stateoptions = $form_state->getValue('country');
-//  if($stateoptions) {
-//    $form['elements']['state']['#options']=array('us'=>'USA','ind' => 'INDIA');
-//  }
-   
+$form['elements']['state']['#prefix']='<div id="state-change">';
+$form['elements']['state']['#suffix']='</div>';
+  
+//  $query2 = $connection->query("SELECT value FROM {webform_submission_data} WHERE webform_id='partnership' and name ='email_address'");
+//  $result2 = $query2->fetchAll();
+//  //print_r($result2);
+//  
+//  // dynamic querires
+//  $query = $connection->select('webform_submission_data', 'ws');
+//  $query->condition('ws.webform_id','partnership');
+//$query->fields('ws', ['value']);
+//$result = $query->execute();
+//foreach ($result as $record) {
+//  // Do something with each $record
+//  print_r($record);
+//}
+//  die;
 }
 
 /**
-   * Ajax callback for the color dropdown.
-   */
-//  function partnershipform_updateColor(array $form, FormStateInterface $form_state) {
-//$term_name = 'random value';
-//  $response = new AjaxResponse();
-//  $response->addCommand(new HtmlCommand('#edit-state-select', $term_name));
-//print("eeeee");
-//  return $response;
-//  }
+ * Ajax callback for the color dropdown.
+ */
+function partnershipformcheckEmail(array $form, FormStateInterface $form_state) {
+  $email = 'nam@gmail.com';
+  $email = $form_state->getValue('email_address');
+  $options = array('email' => 'same');
+  $connection = \Drupal::database();
+  $query2 = $connection->query("SELECT value FROM {webform_submission_data} WHERE webform_id='partnership' and name ='email_address' and value = :value ", [
+    ':value' => $email,
+  ]);
+  $result2 = $query2->fetchAll();
+  print_r($result2);
+  die;
+  if (!$result2) {
+    $options['email'] = 'unique';
+    // $form['elements']['email_address']['#prefix']='<div id ="email-addsress-check">';
+    //return ($form['email_address']);
+    //return ['#markup' => '<div class="error" id ="email-address-check"><label>Uniqiue</label></div>'];
+    $form['elements']['email_address']['#field_prefix'] = '<div class = "error" ><label id ="email">unique</label></div>';
+    return ($form['elements']['email_address']);
+  }
+  else {
+    $options['email'] = 'same';
+    //  return ['#markup' => '<div id ="email-address-check"><label id ="email-address-check">Namit</label></div>'];
+    //  $form['elements']['email_address']['#prefix']='<div id ="email-address-check"><label class = "error">Namit</label>';
+    $form['elements']['email_address']['#field_prefix'] = '<div class ="error"><label id = "email" >Namit </label></div>';
+    return ($form['elements']['email_address']);
+  }
+}
 
 
+/*
+ * 
+ */
+
+function partnershipformStateChange(array $form, FormStateInterface $form_state) {
+ 
+  if($form_state->getValue('country')=='us'){
+     $form['elements']['state']['#options']=array('abc'=>'ABC','bcd'=>'BCD');
+  }
+  else{
+    $form['elements']['state']['#options']=array('up'=>'UP','mp' =>'MP');
+  }
+  return ($form['elements']['state']);
+  
+}
 /*
  * Hook_thme for blank page
  */
 
-Function partnershipform_theme($existing, $type, $theme, $path){
+Function partnershipform_theme($existing, $type, $theme, $path) {
   return array(
     'videoPage' => array(
       'variables' => array(
         'list' => array(),
       ),
       'template' => 'videoPage',
-      'path' => drupal_get_path('module', 'partnershipform').'/templates',
+      'path' => drupal_get_path('module', 'partnershipform') . '/templates',
     ),
   );
+}
+
+//function partnershipform_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//  print_r($form_id);
+//}
+
+function common_form_webform_submission_partnership_node_47_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form['#attached']['library'][] = 'partnershipform/partner-lib';
+}
+
+
+function partnershipform_mail_alter(&$message) {
+  // get email data
+//kint($message['params']['webform_submission']->getData());
+kint($message);
+die;
+  
 }

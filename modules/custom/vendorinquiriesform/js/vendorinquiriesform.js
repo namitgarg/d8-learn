@@ -5,22 +5,37 @@
 
 (function ($) {
   $(document).ready(function () {
-    window.setInterval(recaptchaCheck, 500);
-    $('#edit-country').select2({
-      minimumResultsForSearch: Infinity,
-      placeholder: 'Select an option',
-      dropdownParent: $('.form-item-country'),
-    });
-    $('#edit-state').select2({
-      minimumResultsForSearch: Infinity,
-      placeholder: 'Select an option',
-      dropdownParent: $('.form-item-state'),
-    });
-    $('#edit-industry').select2({
-      minimumResultsForSearch: Infinity,
-      placeholder: 'Select an option',
-      dropdownParent: $('.form-item-industry'),
-    });
+
+    // disable back button pn thank page
+    if ($('body  #webform-submission-vendor-form-node-48-form .form-confirm-wrapper').length >= 1) {
+    } else {
+      eventCategory = 'Vendor Form Visit';
+      eventAction = 'NUll';
+      eventLabel = 'NULL';
+      eventValue = 1;
+      gtag('event', 'FormSubmit', {
+        'event_category': eventCategory,
+        'event_action': eventAction,
+        'event_label': eventLabel,
+        'value': 1,
+      });
+      window.setInterval(recaptchaCheck, 500);
+      $('#edit-country').select2({
+        minimumResultsForSearch: Infinity,
+        placeholder: 'Select an option',
+        dropdownParent: $('.form-item-country'),
+      });
+      $('#edit-state').select2({
+        minimumResultsForSearch: Infinity,
+        placeholder: 'Select an option',
+        dropdownParent: $('.form-item-state'),
+      });
+      $('#edit-industry').select2({
+        minimumResultsForSearch: Infinity,
+        placeholder: 'Select an option',
+        dropdownParent: $('.form-item-industry'),
+      });
+    }
   });
   requiredValidation();
   SubmitValidation();
@@ -226,6 +241,17 @@
           requiredValidation();
         } else {
           $('form#webform-submission-vendor-form-node-48-form').removeClass('error');
+          eventCategory = 'Vendor Form Submission';
+          eventAction = 'Company - ' + $('#edit-company').val();
+          eventLabel = $('#edit-email-address').val();
+          eventValue = 1;
+          gtag('event', 'FormSubmit', {
+            'event_category': eventCategory,
+            'event_action': eventAction,
+            'event_label': eventLabel,
+            'value': 1,
+          });
+          localStorage.setItem('vendorRedirect', 'vendor-form');
         }
       });
     });

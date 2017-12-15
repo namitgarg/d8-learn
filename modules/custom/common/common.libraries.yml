@@ -35,5 +35,12 @@ career-review:
   js:
     js/career-review.js: {}
     
+form-reload:
+  version: 1.x
+  dependencies:
+   - core/jquery
+  js:
+    js/thank_you.js: {}
+    
     
    

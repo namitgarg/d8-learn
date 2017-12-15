@@ -1,0 +1,4 @@
+name: event Email
+description: C example to generate pdf and send a email
+type: module
+core: 8.x

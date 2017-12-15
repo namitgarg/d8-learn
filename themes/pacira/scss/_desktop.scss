@@ -98,7 +98,7 @@
 	}
 }
 .homeSectionTwo{
-	background: url(../images/homeSectionTwoBg.jpg);
+	background: url(../images/homeSectionTwoBg.png);
 	background-size: cover;
 	padding: 42px 0;
 	h3{
@@ -349,12 +349,14 @@
 					font-size: 16px;
 					line-height: 1.5;
 					color: #333333;
-					margin: 0
+					margin: 0;
+					margin-bottom: 10px;
 				}
 				span{
 					&:after{
 						content: '';
 						background: url(../images/plus_grey.svg);
+						cursor: pointer;
 						background-size: 50px;
 						height: 50px;
 						width: 50px;
@@ -376,6 +378,9 @@
 							background-size: 50px;
 						}
 					}
+				}
+				.accord-row-header{
+					cursor: pointer;
 				}
 			}
 		}
@@ -756,7 +761,7 @@
 	.aeChart{
 		margin-top: 20px;
 		img{
-			width: 100%
+			width: 100%;
 		}
 	}
 }

@@ -21,7 +21,7 @@
       if ($(window).width() > 1199)
       {
         $('.block-views-blockbanners-block-1 .view-content .views-row .views-field-field-banner-image img').attr("src", desktopBanner);
-      } else if($(window).width() < 768) {
+      } else if($(window).width() < 520) {
         $('.block-views-blockbanners-block-1 .view-content .views-row .views-field-field-banner-image img').attr("src", mobileBanner);
       }
       else{

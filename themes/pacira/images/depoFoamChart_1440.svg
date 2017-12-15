@@ -19,13 +19,7 @@
                 <tspan x="18" y="79">EXPAREL</tspan>
             </text>
             <text id="®" font-family="Raleway-Bold, Raleway" font-size="12" font-weight="bold" fill="#333333">
-                <tspan x="86" y="75">®</tspan>
-            </text>
-            <text id="DepoMLX" font-family="Raleway-Bold, Raleway" font-size="16" font-weight="bold" fill="#333333">
-                <tspan x="19" y="306">DepoMLX</tspan>
-            </text>
-            <text id="Pediatrics" font-family="Raleway-Regular, Raleway" font-size="16" font-weight="normal" fill="#333333">
-                <tspan x="114" y="215">Pediatrics</tspan>
+                <tspan x="90" y="75">®</tspan>
             </text>
             <text id="IND" font-family="Raleway-Bold, Raleway" font-size="16" font-weight="bold" line-spacing="21" fill="#333333">
                 <tspan x="474.073903" y="31">IND</tspan>
@@ -69,6 +63,9 @@
                 <path d="M0.400841662,10.5 L126.511428,10.5" id="Line-2" stroke="#6E318D" stroke-width="5" stroke-linecap="square"></path>
                 <circle id="Oval-2" fill="#6E318D" cx="128" cy="10" r="10"></circle>
             </g>
+            <text id="Pediatrics" font-family="Raleway-Regular, Raleway" font-size="16" font-weight="normal" fill="#333333">
+                <tspan x="114" y="215">Pediatrics</tspan>
+            </text>
             <text id="Surgical-infiltratio" font-family="Raleway-Regular, Raleway" font-size="16" font-weight="normal" fill="#333333">
                 <tspan x="114" y="82">Surgical infiltration (U.S.)</tspan>
             </text>
@@ -80,6 +77,9 @@
             </text>
             <text id="DepoTXA" font-family="Raleway-Bold, Raleway" font-size="16" font-weight="bold" fill="#333333">
                 <tspan x="19" y="260">DepoTXA</tspan>
+            </text>
+            <text id="DepoMLX" font-family="Raleway-Bold, Raleway" font-size="16" font-weight="bold" fill="#333333">
+                <tspan x="19" y="306">DepoMLX</tspan>
             </text>
         </g>
     </g>

@@ -4,52 +4,37 @@
  */
 
 (function ($) {
-  Drupal.behaviors.myBehavior = {
-  attach: function (context, settings) {
-    $('button').toggleClass('test');
-  }
-};
-   $(document).ajaxComplete(function() {
-     
-     
-     // Email ajax validation
-  if($('#user-email-result label.error').length > 0)
-  {
-   $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
-  }
-  else{
-      $('#partnershipform-simple #edit-submit').removeAttr('disabled');
-  }
-  
-  $('#edit-aoi').on('keyup',function(){
-     $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
-  });
- 
-  });
   $(document).ready(function () {
-   // window.setInterval(recaptchaCheck, 500);
-//    $('#edit-country').select2({
-//      minimumResultsForSearch: Infinity,
-//      placeholder: 'Select an option',
-//      dropdownParent: $('.form-item-country'),
-//    });
-    'use strict';
-    $('#partnershipform-simple #edit-submit').attr('disabled','disabled');
-$('#partnershipform-simple #edit-submit').on('click',function(e) {
 
+    // Disable back button on thanks page
+    if ($('body  #webform-submission-partnership-node-47-form .form-confirm-wrapper').length >= 1) {
 
-});
-  // From: http://stackoverflow.com/questions/17962130/restrict-user-to-refresh-and-back-forward-in-any-browser
-  history.pushState({page: 1}, 'Title 1', '#no-back');
-  window.onhashchange = function (event) {
-    window.location.hash = 'no-back';
-  };
+    } else {  // on form page
+
+      eventCategory = 'Partnership Form Visit';
+      eventAction = 'NUll';
+      eventLabel = 'NULL';
+      eventValue = 1;
+      gtag('event', 'FormSubmit', {
+        'event_category': eventCategory,
+        'event_action': eventAction,
+        'event_label': eventLabel,
+        'value': 1,
+      });
+
+      window.setInterval(recaptchaCheck, 500);
+      $('#edit-state').select2({
+        minimumResultsForSearch: Infinity,
+        // placeholder: 'Select an option',
+        dropdownParent: $('.form-item-state'),
+      });
+    }
   });
 
   // calls all requried validaion
   requiredValidation();
   // Validation for country drop down
-  countryValidation();
+  stateValidation();
 
   //Validation function when we submit the form 
   SubmitValidation();
@@ -67,7 +52,7 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
       });
 
       $('#edit-comments').on('keyup', function (e) {
-        textAreaRequiredValidation('#edit-comments', '.form-item-comments', 'Please enter your area of Comments');
+        textAreaRequiredValidation('#edit-comments', '.form-item-comments', 'Please enter your Comments');
       });
       $('#edit-first-name').on('keyup', function (e) {
         fieldRequiredValidation('#edit-first-name', '.form-item-first-name', 'Please enter your First Name');
@@ -98,8 +83,8 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
         // fieldRequiredValidation('#edit-city','.form-item-city','Please enter your City' );
         emailValidation('#edit-email-address', '.form-item-email-address');
       });
-      $('#edit-country').on('select2:select', function (e) {
-        countryValidation();
+      $('#edit-state').on('select2:select', function (e) {
+        stateValidation();
       });
 
     }
@@ -127,8 +112,8 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
       $(formItemClass).removeClass('error has-error');
     }
   }
-  
-  function textAreaRequiredValidation(inputIdSelector, formItemClass, errorMessage){
+
+  function textAreaRequiredValidation(inputIdSelector, formItemClass, errorMessage) {
     if ($(inputIdSelector).val() == '')
     {
       if ($(formItemClass + ' label.error').length < 1)
@@ -145,24 +130,24 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
       $(formItemClass + ' label.error').css('display', 'none');
       $(formItemClass).removeClass('error has-error');
     }
-    
+
   }
-  
 
-  function countryValidation() {
-    if ($('#select2-edit-country-container').text() == 'Select an option') {
 
-      if ($('.form-item-country label.error').length < 1)
+  function stateValidation() {
+    if ($('#select2-edit-state-container').text() == 'Select State') {
+
+      if ($('.form-item-state label.error').length < 1)
       {
-        $('#edit-country').parent('.select-wrapper').before('<label class="error">Please select your country</label>')
+        $('#edit-state').parent('.select-wrapper').before('<label class="error">Please select your State</label>')
       } else {
-        $('.form-item-country label.error').text('Please select your country');
+        $('.form-item-state label.error').text('Please select your State');
       }
-      $('.form-item-country label.error').css('display', 'inline-block');
-      $('.form-item-country ').addClass('error has-error');
+      $('.form-item-state label.error').css('display', 'inline-block');
+      $('.form-item-state ').addClass('error has-error');
     } else {
-      $('.form-item-country label.error').css('display', 'none');
-      $('.form-item-country ').removeClass('error has-error');
+      $('.form-item-state label.error').css('display', 'none');
+      $('.form-item-state ').removeClass('error has-error');
     }
   }
 
@@ -236,7 +221,7 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
     }
 
   }
-  
+
   /*
    * 
    * inputIdSelector -> the id selctor of the form with #Prepended
@@ -262,14 +247,13 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
         $(formItemClass + ' label.error').css('display', 'none');
         $(formItemClass).removeClass('error has-error');
       }
-    }
-    else {
+    } else {
       $(formItemClass + ' label.error').css('display', 'none');
-        $(formItemClass).removeClass('error has-error'); 
+      $(formItemClass).removeClass('error has-error');
     }
   }
-  
-  
+
+
 
   /*
    * Validation function to verify the email format.
@@ -311,51 +295,13 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
 
   }
 
-
-  function emailUniqueCheck(inputIdSelector, formItemClass) {
-    var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{1,10}$/;
-    var emailCheck = filter.test($(inputIdSelector).val());
-    var email = {
-      'email': $(inputIdSelector).val() //for get email 
-    };
-    if (emailCheck)
-    {
-      purl = "/partnership-check-mail"
-      $.ajax({
-        type: "POST",
-        url: purl,
-        async: false,
-        data: email,
-        dataType: "text",
-        success: function (data, status) {
-          if (JSON.parse(data).email == 'same') {
-            if ($(formItemClass + ' label.error').length < 1)
-            {
-              $(inputIdSelector).before('<label class="error">Email Address already exists</label>');
-            } else {
-              $(formItemClass + ' label.error').text('Email Address already exists');
-            }
-            $(formItemClass + ' label.error').css('display', 'inline-block');
-            $(formItemClass).addClass('error has-error');
-
-          } else { // when email is different  no need to code here 
-
-          }
-        }
-
-      }); //post method ends
-
-    } // if email matches the email pattern
-
-  }
-
   /*
    * functions to be called when you click on submit form
    */
   function SubmitValidation() {
     $('button.webform-button--submit').on('click', function (e) {
       fieldRequiredValidation('#edit-area-of-partnering-interest', '.form-item-area-of-partnering-interest', 'Please enter your area of interest');
-      textAreaRequiredValidation('#edit-comments', '.form-item-comments', 'Please enter your area of Comments');
+      textAreaRequiredValidation('#edit-comments', '.form-item-comments', 'Please enter your Comments');
       fieldRequiredValidation('#edit-first-name', '.form-item-first-name', 'Please enter your First Name');
       fieldRequiredValidation('#edit-last-name', '.form-item-last-name', 'Please enter your Last Name');
       fieldRequiredValidation('#edit-address-1', '.form-item-address-1', 'Please enter your Address');
@@ -364,27 +310,26 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
       phoneValidation('#edit-phone', '.form-item-phone', 'Phone Number');
       faxValidation('#edit-fax', '.form-item-fax', 'Fax Number');
       emailValidation('#edit-email-address', '.form-item-email-address');
-      emailUniqueCheck('#edit-email-address', '.form-item-email-address');
-      countryValidation();
+      stateValidation();
 // recpatch code 
-//      var response = grecaptcha.getResponse();
-//      if (response) {
-//        //captcha validated and got response code
-//        $('.captcha label.error').css('display', 'none');
-//        $('.g-recaptcha').removeClass('error has-error');
-//      } else {
-//        //not validated or not clicked
-//        if ($('.captcha label.error').length < 1)
-//        {
-//          $('.g-recaptcha').after('<label class="error">Please Fill Captcha</label>');
-//        } else
-//        {
-//          $('.captcha label.error').text('Please Fill Captcha');
-//        }
-//        $('.captcha label.error').css('display', 'inline-block');
-//        $('.g-recaptcha').addClass('error has-error');
-//        e.preventDefault();
-//      }
+      var response = grecaptcha.getResponse();
+      if (response) {
+        //captcha validated and got response code
+        $('.captcha label.error').css('display', 'none');
+        $('.g-recaptcha').removeClass('error has-error');
+      } else {
+        //not validated or not clicked
+        if ($('.captcha label.error').length < 1)
+        {
+          $('.g-recaptcha').after('<label class="error">Please Fill Captcha</label>');
+        } else
+        {
+          $('.captcha label.error').text('Please Fill Captcha');
+        }
+        $('.captcha label.error').css('display', 'inline-block');
+        $('.g-recaptcha').addClass('error has-error');
+        e.preventDefault();
+      }
       $('form#webform-submission-partnership-node-47-form').each(function () {
         if ($('.form-item.error').length >= 1) {
           $('form#webform-submission-partnership-node-47-form').addClass('error');
@@ -395,6 +340,17 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
           requiredValidation();
         } else {
           $('form#webform-submission-partnership-node-47-form').removeClass('error');
+          eventCategory = 'Partnership Form Submission';
+          eventAction = $('#select2-edit-state-container').text();
+          eventLabel = $('#edit-email-address').val();
+          eventValue = 1;
+          gtag('event', 'FormSubmit', {
+            'event_category': eventCategory,
+            'event_action': eventAction,
+            'event_label': eventLabel,
+            'value': 1,
+          });
+          localStorage.setItem('partnerRedirect', 'partner-form');
         }
       });
     });
@@ -408,22 +364,22 @@ $('#partnershipform-simple #edit-submit').on('click',function(e) {
     if ($('form#webform-submission-partnership-node-47-form').hasClass('error'))
     {
       var response = grecaptcha.getResponse();
-//      if (response) {
-//        //captcha validated and got response code
-//        $('.captcha label.error').css('display', 'none');
-//        $('.g-recaptcha').removeClass('error has-error');
-//      } else {
-//        //not validated or not clicked
-//        if ($('.captcha label.error').length < 1)
-//        {
-//          $('.g-recaptcha').after('<label class="error">Please Fill Captcha</label>');
-//        } else
-//        {
-//          $('.captcha label.error').text('Please Fill Captcha');
-//        }
-//        $('.captcha label.error').css('display', 'inline-block');
-//        $('.g-recaptcha').addClass('error has-error');
-//      }
+      if (response) {
+        //captcha validated and got response code
+        $('.captcha label.error').css('display', 'none');
+        $('.g-recaptcha').removeClass('error has-error');
+      } else {
+        //not validated or not clicked
+        if ($('.captcha label.error').length < 1)
+        {
+          $('.g-recaptcha').after('<label class="error">Please Fill Captcha</label>');
+        } else
+        {
+          $('.captcha label.error').text('Please Fill Captcha');
+        }
+        $('.captcha label.error').css('display', 'inline-block');
+        $('.g-recaptcha').addClass('error has-error');
+      }
     }
   }
 

@@ -5,9 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-namespace Drupal\common;
-use Drupal\Core\Routing\RouteMatchInterface;
 
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\file\Entity\File;
 function common_theme(array $existing, $type, $theme, $path) {
   return array(
     'common_template' => array(
@@ -33,7 +33,7 @@ function template_preprocess_common(&$variables) {
 /*
  * Add JS for View blocks.
  */
-function common_views_pre_render($view) {
+function common_views_pre_render(\Drupal\views\ViewExecutable $view) {
   if ($view->storage->id() == 'leadership' && $view->current_display == 'block_1') {
     $view->element['#attached']['library'][] = 'common/leadership_lib';
   }
@@ -41,17 +41,23 @@ function common_views_pre_render($view) {
     $view->element['#attached']['library'][] = 'common/bod_lib';
   }
   if ($view->storage->id() == 'career_page_reviews' && $view->current_display == 'block_1') {
-//    $result = $view->result;
-//    foreach ($result as $i => $row) {
-//      $view->result[$i]->_entity->set('field_name','test');
-//      $view->result[$i]->field_name[0]['rendered']['#markup'] = "The new text";
-//
-//    }
-// 
-//    $view->field['nothing']->options['alter']['text'] = 'My custom tesxt';
+    $view->element['#attached']['library'][] = 'common/career-review';
 
+ //get value ofimage fiel
+
+  //$drupal_file_uri = File::load(63)->getFileUri();
+  //print_r( file_url_transform_relative(file_create_url($drupal_file_uri)));
+    $result = $view->result;
+
+    foreach ($result as $i => $row) {
+
+// set value of a fields
+      $view->result[$i]->_entity->set('field_name', 'tessssssst');
+      // get value of a field
+      print_r($view->result[$i]->_entity->get('field_name')->value);
+      //  $view->field['nothing']->options['alter']['text'] = 'My custom tesxt';
+    }
   }
-  
 }
 
 /*
@@ -59,25 +65,6 @@ function common_views_pre_render($view) {
  */
 function common_page_attachments(array &$page) {
   $page['#attached']['library'][] = 'common/main-menu';
-}
-
-
-
-//function common_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-//  print_r($form_id);
-//}
-
-function common_form_webform_submission_partnership_node_47_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  print_r($form_id);
-  $form['elements']['email_address']['#ajax'] = array(
-        'callback' => 'commonEmailValidation',
-        'effect' => 'none',
-        'event' => 'change',
-        'method' => 'replace',
-        'progress' => array(
-//          'type' => 'throbber',
-          'message' => NULL,
-        ),
-      );
-  kint($form['elements']['email_address']);
+  $page['#attached']['library'][] = 'common/form-reload';
+  
 }

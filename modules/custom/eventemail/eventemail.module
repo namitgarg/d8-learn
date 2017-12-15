@@ -1,0 +1,124 @@
+<?php
+
+function eventemail_verify_form($form, &$form_state) {
+
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#field_prefix' => '<label id ="email-error-label"class="hidden">Email address </label>',
+    '#title' => t('Email Address'),
+    '#exclude_cv' => TRUE,
+    '#required' => TRUE,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('submit'),
+    '#submit' => array('eventemail_verify_submit'),
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'eventemail') . '/js/eventemail.js',
+  );
+  $form['#attributes'] = array('class' => 'eventemail-form');
+  return $form;
+}
+
+function eventemail_verify_form_ajax_submit($form, &$form_state) {
+
+
+  // print_r($form_state); die;
+  //drupal_goto('dddd');
+  return 'True';
+}
+
+function eventemail_verify_submit($form, &$form_state) {
+  $path = libraries_get_path('tcpdf');
+  define('K_PATH_IMAGES', drupal_get_path("module", "facility_pdf") . '/img/');
+  require_once($path . '/tcpdf.php');
+  $image_url_header = drupal_get_path("module", "facility_pdf") . '/img/Group.png';
+//  ob_clean();
+//  $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, false, 'UTF-8', false);
+//  $pdf->AddPage('');
+//  $pdf->setPrintHeader(false);
+//  $pdf->setPrintFooter(false);
+//  $pdf->setImageScale(5.25);
+//  // $pdf->setImageScale(1.25);
+//  $pdf->Image($image_url_header, '', '', '', '', '', '', 'T', false, '', '', false, false, 1, false, false, false);
+//
+//  $pdf->SetXY(10, 35);
+//  $pdf->SetFont('', '', 10, '', true);
+//	$pdf->WriteHTML('My Preferences');
+//  	$image_url_footer1 = drupal_get_path("module", "facility_pdf") . '/img/Group_2.png';
+//	$pdf->SetXY(0,260);
+//	//$pdf->setImageScale(5.125);
+//	$pdf->Image($image_url_footer1, '', '', '', '', '', '', 'T', false, '', '', false, false, 1, false, false, false);
+//	$pdf->Output('I');
+//	exit;
+//	
+
+
+  $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+  ob_clean();
+// set document information
+  $pdf->SetCreator(PDF_CREATOR);
+  $pdf->SetAuthor('Drupal');
+  $pdf->SetTitle('Custom Example');
+  $pdf->SetSubject('TCPDF Tutorial');
+  $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+  $image_file = 'sites/all/modules/custom/facility_pdf/img/Group.png';
+// set default header data
+  $pdf->SetHeaderData(false);
+  $pdf->SetFooterData(false);
+
+// set margins
+  $pdf->SetMargins(0, 0, 0, 0);
+  $pdf->SetHeaderMargin(false);
+  $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+// set auto page breaks
+  $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+// set image scale factor
+  $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+
+// set default font subsetting mode
+  $pdf->setFontSubsetting(true);
+
+// Set font
+  $pdf->SetFont('dejavusans', '', 14, '', true);
+
+// Add a page
+// This method has several options, check the source code documentation for more information.
+  $pdf->AddPage();
+
+  $pdf->Image($image_file, '', '', 210, '', '', '', 'T', false, '', '', false, false, 1, false, false, false);
+  $pdf->SetXY(10, 35);
+// Set some content to print
+  $html = <<<EOD
+<i>This is the first example of TCPDF library.</i>
+<p>This text is printed using the <i>writeHTMLCell()</i> method but you can also use: <i>Multicell(), writeHTML(), Write(), Cell() and Text()</i>.</p>
+EOD;
+  $y = $pdf->getY();
+// Print text using writeHTMLCell()
+  $pdf->writeHTMLCell(0, 0, '', $y, $html, 0, 1, 0, true, '', true);
+  $pdf->SetXY(10, 240);
+  $pdf->WriteHTML('My Preferences');
+// Close and output PDF document
+// This method has several options, check the source code documentation for more information.
+  $pdf->Output('custom_file.pdf', 'I');
+  exit;
+}
+
+function eventemail_check() {
+  $email = $_POST['eventemail_email'];
+  print_r($email);
+  $results = db_query('SELECT hcp_pacira_email_email from field_data_hcp_pacira_email where hcp_pacira_email_email = :email', array(':email' => $email))->fetchAll();
+  print_r($results);
+  $flag = 'false';
+  $unique = array('eventemail_response' => $flag);
+//  print_r(count($results));
+  if (count($results) <= 0) {
+    $flag = true;
+  }
+  print($flag);
+  return drupal_json_output($unique);
+}
